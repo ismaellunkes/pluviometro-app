@@ -12,4 +12,8 @@ export class CadastroPrecipitacaoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onButtonClick() : void {
+
+  }
+
 }
