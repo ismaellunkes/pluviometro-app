@@ -1,0 +1,33 @@
+/* inputError */
+
+.inputError {
+  position: absolute;
+  width: 369px;
+  height: 38px;
+  left: 22px;
+  top: 268px;
+}
+
+/* Ligou irrigação automática. */
+
+.checkbox-irrigacao {
+  position: absolute;
+  width: 316px;
+  height: 29px;
+  left: 49px;
+  top: 549px;
+
+  /* Semi-Bold / H4 Heading */
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 29px;
+  /* identical to box height */
+
+  /* Heading/Title Color */
+
+  color: #152536;
+}
+

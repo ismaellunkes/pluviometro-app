@@ -1,1 +1,35 @@
-<p>cadastro-precipitacao works!</p>
+
+
+<!-- Switch -->
+<div class="switch">
+  <label for="registro-pluvio">Ligou irrigação?</label>
+  <label>
+    Não
+    <input type="checkbox" />
+    <span class="lever"></span>
+    Sim
+  </label>
+</div>
+
+<div class="input-field col s6">
+  <input id="registro-pluvio" type="text" class="input-cadastro-pluvio" />
+</div>
+
+<div class="campo-form">
+  <select>
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+  </select>
+  <label>Materialize Select</label>
+</div>
+
+<button
+  class="btn waves-effect waves-light darken-4"
+  type="button"
+  (click)="this.onButtonClick()"
+>
+  Salvar
+  <i class="material-icons right"></i>
+</button>
