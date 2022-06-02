@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RodapeComponent } from './rodape.component';
+import { TotalPrecipitacaoComponent } from './total-precipitacao.component';
 
-describe('RodapeComponent', () => {
-  let component: RodapeComponent;
-  let fixture: ComponentFixture<RodapeComponent>;
+describe('TotalPrecipitacaoComponent', () => {
+  let component: TotalPrecipitacaoComponent;
+  let fixture: ComponentFixture<TotalPrecipitacaoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RodapeComponent ]
+      declarations: [ TotalPrecipitacaoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RodapeComponent);
+    fixture = TestBed.createComponent(TotalPrecipitacaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

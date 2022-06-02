@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'nav-bar',
+  selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent implements AfterViewInit{
 
-  constructor() { }
+  @ViewChild('mobile') sideNav ?: ElementRef;
 
-  ngOnInit(): void {
+  title = 'Pluviometro App';
+
+
+  ngAfterViewInit(): void {
+    let $sideNav = $('#mobile-demo');
+    M.Sidenav.init (this.sideNav?.nativeElement);
   }
-
 }
