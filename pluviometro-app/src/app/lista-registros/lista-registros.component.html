@@ -1,26 +1,28 @@
-<div class="row">
-  <div class="input-field col s12">      
-  </div>
-  <div class="col s12 m8 l9">
-    <table class="responsive-table">
-      <thead>
-        <tr>
-          <th>Data/Hora</th>
-          <th>Precipitação (mm)</th>
-          <th>Locais</th>
-          <th>Responsável</th>
-          <th>Ligou Irrig.</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><input name = "input-data-hora" [(ngModel)]="this.registroPluviometria.dataHoraRegistro"/></td>          
-          <td><input name = "input-registro" [(ngModel)]="this.registroPluviometria.registro"/></td>          
-          <td><input name = "input-locais" [(ngModel)]="this.registroPluviometria.locais"></td>          
-          <td><input name = "input-responsavel" [(ngModel)]="this.registroPluviometria.responsavel"></td>          
-          <td><input name = "input-ligou-irrigacao" [(ngModel)]="this.registroPluviometria.isLigouIrrigacao"></td>                    
-        </tr>        
-      </tbody>
-    </table>
-  </div>
-</div>
+<table>
+  <thead>
+    <tr>
+        <th>Data/Hora Reg.</th>
+        <th>Registro(mm)</th>
+        <th>Item Locais</th>
+        <th>Responsável</th>
+        <th>Ligou Irrig.?</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let registro of registrosPluviometria">
+      <td>{{ registro.dataHoraRegistro | date: 'dd/MM/yyyy HH:mm:ss'  }}</td> 
+      <td>{{ registro.registro }}</td>          
+      <td>{{ registro.locais }}</td>          
+      <td>{{ registro.responsavel }}</td>          
+      <td>{{ registro.isLigouIrrigacao === true ? "Sim" : "Não" }}</td>          
+    </tr>   
+  </tbody>
+</table>
+
+<app-total-precipitacao
+[totalPrecipitacao] = "this.totalPrecipitacao" 
+>
+</app-total-precipitacao>
+
+

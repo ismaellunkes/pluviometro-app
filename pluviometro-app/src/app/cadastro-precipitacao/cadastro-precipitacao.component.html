@@ -1,35 +1,93 @@
+<div class="row">
+  <form class="col s12">
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="data-hora-registro" type="text" class="validate" />
+        <label for="data-hora-registro">Data/Hora Registro</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="registro" type="number" class="validate" />
+        <label for="registro">Registro em mm</label>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="input-field col s12">
+        <select class="browser-default">
+          <option value="" disabled selected>Selecione uma opção</option>
+          <option value="Ismael">Ismael</option>
+          <option value="João">João</option>
+          <option value="Maria">Maria</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <label>Locais:</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s3">
+        <p>
+          <label>
+            <input type="checkbox" />
+            <span>Pomar 01</span>
+          </label>
+        </p>
+      </div>
+      <div class="input-field col s3">
+        <p>
+          <label>
+            <input type="checkbox" />
+            <span>Pomar 02</span>
+          </label>
+        </p>
+      </div>
+      <div class="input-field col s3">
+        <p>
+          <label>
+            <input type="checkbox" />
+            <span>Pomar 03</span>
+          </label>
+        </p>
+      </div>
+      <div class="input-field col s3">
+        <p>
+          <label>
+            <input type="checkbox" />
+            <span>Pomar 04</span>
+          </label>
+        </p>
+      </div>
+      <div class="input-field col s3">
+        <p>
+          <label>
+            <input type="checkbox" />
+            <span>Pomar 05</span>
+          </label>
+        </p>
+      </div>
+      <div class="input-field col s3">
+        <p>
+          <label>
+            <input type="checkbox" />
+            <span>Pomar 06</span>
+          </label>
+        </p>
+      </div>
 
+      <div class="row">
+        <div class="input-field col s12">
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Ligou Irrigação.</span>
+            </label>
+          </p>
+        </div>
+      </div>
 
-<!-- Switch -->
-<div class="switch">
-  <label for="registro-pluvio">Ligou irrigação?</label>
-  <label>
-    Não
-    <input type="checkbox" />
-    <span class="lever"></span>
-    Sim
-  </label>
+ 
+    </div>
+  </form>
 </div>
-
-<div class="input-field col s6">
-  <input id="registro-pluvio" type="text" class="input-cadastro-pluvio" />
-</div>
-
-<div class="campo-form">
-  <select>
-    <option value="" disabled selected>Choose your option</option>
-    <option value="1">Option 1</option>
-    <option value="2">Option 2</option>
-    <option value="3">Option 3</option>
-  </select>
-  <label>Materialize Select</label>
-</div>
-
-<button
-  class="btn waves-effect waves-light darken-4"
-  type="button"
-  (click)="this.onButtonClick()"
->
-  Salvar
-  <i class="material-icons right"></i>
-</button>
