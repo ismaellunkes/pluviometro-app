@@ -1,46 +1,76 @@
-import { FormControl } from '@angular/forms';
-import { RegistroPluviometria } from './../model/registro-pluviometria';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Shared } from './../util/shared'
+import { CadastroPrecipitacaoStorageService } from './cadastro-precipitacao-storage.service'
+import { NgForm } from '@angular/forms'
+import { RegistroPluviometria } from './../model/registro-pluviometria'
+import { Component, Input, OnInit, Output, ViewChild } from '@angular/core'
 
 @Component({
   selector: 'app-cadastro-precipitacao',
   templateUrl: './cadastro-precipitacao.component.html',
-  styleUrls: ['./cadastro-precipitacao.component.css']
+  styleUrls: ['./cadastro-precipitacao.component.css'],
 })
-export class CadastroPrecipitacaoComponent implements OnInit, OnChanges {
+export class CadastroPrecipitacaoComponent implements OnInit {
+  @ViewChild('form') form!: NgForm
 
-  public dataHoraRegistro: FormControl;
+  registroPluviometrias?: RegistroPluviometria[]
+  @Input() @Output() registro!: RegistroPluviometria
 
-  @Input() registro!: RegistroPluviometria;
-  favoriteColor = '';
+  responsaveis: String[] = ['Ismael', 'Maria', 'João']
+  locais: String[] = [
+    'Pomar 01',
+    'Pomar 02',
+    'Pomar 03',
+    'Pomar 04',
+    'Pomar 05',
+  ]
 
-  constructor() { 
+  isSubmitted!: boolean
+  isShowMessage: boolean = false
+  isSuccess!: boolean
+  message!: string
 
-    this.dataHoraRegistro = new FormControl('');
-
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    
-    
-  }
+  constructor(
+    private cadastroPrecipitacaoStorageService: CadastroPrecipitacaoStorageService
+  ) {}
 
   ngOnInit(): void {
-    this.registro = new RegistroPluviometria(new Date(), 1, [''], '', true);
-
-    document.addEventListener('DOMContentLoaded', function() {
-      var elems = document.querySelectorAll('.datepicker');
-      var instances = M.Datepicker.init(elems);
-    });
-  
-    // Or with jQuery
-  
-    $(document).ready(function(){
-      $('.datepicker').datepicker();
-    });
+    //Shared.initializeWebStorage()
+    this.registro = new RegistroPluviometria();
+    this.registroPluviometrias = [];
   }
 
-  onButtonClick() : void {
+  onSubmit() {
+    this.isSubmitted = true
+    debugger
+    if (!this.cadastroPrecipitacaoStorageService.isExist(this.registro)) {
+      this.cadastroPrecipitacaoStorageService.save(this.registro)
+    } else {
+      this.cadastroPrecipitacaoStorageService.update(this.registro)
+    }
+    this.isShowMessage = true
+    this.isSuccess = true
+    this.message = 'Cadastro realizado com sucesso!'
 
+    this.form.reset()
+    this.registro = new RegistroPluviometria();
+
+    this.registroPluviometrias = this.cadastroPrecipitacaoStorageService.getRegistros()
+
+    this.cadastroPrecipitacaoStorageService.notifyTotalregistros()
+
+    //debugger
+    //alert(this.registro.dtHoraRegistro);
   }
 
+  onSelectChange(event: Event) {
+    this.registro.responsavel = (event.target as HTMLInputElement).value
+  }
+
+  addLocal(event: Event) {    
+    this.registro.locais.push((event.target as HTMLInputElement).value);
+  }
+
+  isLigou(event: any) {
+    this.registro.isLigouIrrigacao = event.target.checked ? true : false
+  }
 }
