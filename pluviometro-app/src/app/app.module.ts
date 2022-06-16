@@ -1,3 +1,4 @@
+import { CadastroPrecipitacaoStorageService } from './cadastro-precipitacao/cadastro-precipitacao-storage.service';
 import { CadastroPrecipitacaoComponent } from './cadastro-precipitacao/cadastro-precipitacao.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -36,7 +37,7 @@ import { TotalPrecipitacaoComponent } from './total-precipitacao/total-precipita
     NgxMaskModule.forRoot(),
 
   ],
-  providers: [],
+  providers: [CadastroPrecipitacaoStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
