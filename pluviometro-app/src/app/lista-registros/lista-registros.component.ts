@@ -32,10 +32,11 @@ export class ListaRegistrosComponent implements OnInit, OnChanges {
   ngOnInit(): void {
 
     this.registrosPluviometria = WebStorageUtil.get(Constants.REGISTROS_KEY);
-
     this.totalPrecipitacao = 0
     this.registrosPluviometria.forEach((element) => {
-      this.totalPrecipitacao += element.registro
+      this.totalPrecipitacao = parseInt(element.registro.toString()) + this.totalPrecipitacao;
     })
+
   }
+  
 }

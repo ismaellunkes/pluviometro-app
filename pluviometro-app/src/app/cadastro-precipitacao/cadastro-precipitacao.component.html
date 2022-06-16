@@ -27,7 +27,8 @@
         <input
           id="registro-chuva"
           name="registro-chuva"
-          type="number"
+          type="text"
+          pattern="^\d{1,3}"
           class="validate"
           [(ngModel)]="this.registro.registro"
           #registrochuva="ngModel"
@@ -38,7 +39,7 @@
           class="red-text"
           [hidden]="registrochuva.valid || registrochuva.untouched"
         >
-          Por favor, informe o registro de chuva.
+          Por favor, informe o registro de chuva em mm.
         </div>
       </div>
     </div>
