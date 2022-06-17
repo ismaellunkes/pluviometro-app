@@ -1,5 +1,10 @@
+import { Shared } from './shared';
 export class WebStorageUtil {
   static get(key: string): any {
+    debugger
+    if (localStorage.length < 1) {
+      Shared.initializeWebStorage();
+    }
     return JSON.parse(localStorage.getItem(key)!);
   }
 
