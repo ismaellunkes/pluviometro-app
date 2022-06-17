@@ -41,7 +41,6 @@ export class CadastroPrecipitacaoComponent implements OnInit {
 
   onSubmit() {
     this.isSubmitted = true
-    debugger
     if (!this.cadastroPrecipitacaoStorageService.isExist(this.registro)) {
       this.cadastroPrecipitacaoStorageService.save(this.registro)
     } else {
@@ -66,7 +65,7 @@ export class CadastroPrecipitacaoComponent implements OnInit {
     this.registro.responsavel = (event.target as HTMLInputElement).value
   }
 
-  addLocal(event: Event) {    
+  addLocal(event: Event) {
     this.registro.locais.push((event.target as HTMLInputElement).value);
   }
 

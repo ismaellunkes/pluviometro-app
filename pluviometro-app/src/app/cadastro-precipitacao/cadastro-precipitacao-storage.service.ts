@@ -13,7 +13,7 @@ export class CadastroPrecipitacaoStorageService {
 
   constructor() {
     this.registros = WebStorageUtil.get(Constants.REGISTROS_KEY)
-    this.registrosource = new BehaviorSubject<number>(this.registros.length)
+    this.registrosource = new BehaviorSubject<number>(this.registros?.length)
   }
 
   save(registro: RegistroPluviometria) {
@@ -39,11 +39,9 @@ export class CadastroPrecipitacaoStorageService {
   }
 
   isExist(registro: RegistroPluviometria): boolean {
-    debugger
     this.registros = WebStorageUtil.get(Constants.REGISTROS_KEY)
     for (let u of this.registros) {
-      debugger;
-      if (        
+      if (
         u.dtHoraRegistro == registro.dtHoraRegistro
       ) {
         return true
@@ -67,5 +65,5 @@ export class CadastroPrecipitacaoStorageService {
    asObservable(): Observable<number> {
     return this.registrosource
     //return this.userSource.asObservable()
-  } 
+  }
 }
