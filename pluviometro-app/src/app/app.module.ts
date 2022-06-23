@@ -1,4 +1,4 @@
-import { CadastroPrecipitacaoStorageService } from './cadastro-precipitacao/cadastro-precipitacao-storage.service';
+import { CadastroPrecipitacaoStorageService } from './services/cadastro-precipitacao-storage.service';
 import { CadastroPrecipitacaoComponent } from './cadastro-precipitacao/cadastro-precipitacao.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -14,6 +14,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FooterComponent } from './footer/footer.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { TotalPrecipitacaoComponent } from './total-precipitacao/total-precipitacao.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ModalComponent } from './shared/modal/modal.component';
 
 
 @NgModule({
@@ -23,12 +25,14 @@ import { TotalPrecipitacaoComponent } from './total-precipitacao/total-precipita
     CadastroPrecipitacaoComponent,
     NavBarComponent,
     FooterComponent,
-    TotalPrecipitacaoComponent
+    TotalPrecipitacaoComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     FormsModule,
     BrowserModule,
     BsDropdownModule.forRoot(),
