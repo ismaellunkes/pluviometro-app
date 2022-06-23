@@ -1,0 +1,14 @@
+{
+  "registros": [
+    {
+      "locais": [
+        "Pomar 02",
+        "Pomar 01"
+      ],
+      "dtHoraRegistro": "2022-06-22T22:32",
+      "registro": "12",
+      "responsavel": "Maria",
+      "id": 1
+    }
+  ]
+}

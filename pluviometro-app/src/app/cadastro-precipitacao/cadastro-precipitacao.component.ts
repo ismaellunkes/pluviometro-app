@@ -1,5 +1,5 @@
-import { Shared } from './../util/shared'
-import { CadastroPrecipitacaoStorageService } from './cadastro-precipitacao-storage.service'
+import { CadastroPrecipitacaoPromisesService } from './../services/cadastro-precipitacao-promises.service'
+import { CadastroPrecipitacaoStorageService } from '../services/cadastro-precipitacao-storage.service'
 import { NgForm } from '@angular/forms'
 import { RegistroPluviometria } from './../model/registro-pluviometria'
 import { Component, Input, OnInit, Output, ViewChild } from '@angular/core'
@@ -24,41 +24,56 @@ export class CadastroPrecipitacaoComponent implements OnInit {
     'Pomar 05',
   ]
 
+  modal = {
+    show: false,
+    title: '',
+    text: '',
+  }
+
   isSubmitted!: boolean
   isShowMessage: boolean = false
   isSuccess!: boolean
   message!: string
 
   constructor(
-    private cadastroPrecipitacaoStorageService: CadastroPrecipitacaoStorageService
+    private cadastroPrecipitacaoStorageService: CadastroPrecipitacaoStorageService,
+    private cadastroPrecipitacaoPromisesService: CadastroPrecipitacaoPromisesService,
   ) {}
 
   ngOnInit(): void {
     //Shared.initializeWebStorage()
-    this.registro = new RegistroPluviometria();
-    this.registroPluviometrias = [];
+    this.registro = new RegistroPluviometria()
+    this.registroPluviometrias = []
   }
 
   onSubmit() {
-    this.isSubmitted = true
-    if (!this.cadastroPrecipitacaoStorageService.isExist(this.registro)) {
-      this.cadastroPrecipitacaoStorageService.save(this.registro)
-    } else {
-      this.cadastroPrecipitacaoStorageService.update(this.registro)
-    }
-    this.isShowMessage = true
-    this.isSuccess = true
-    this.message = 'Cadastro realizado com sucesso!'
-
-    this.form.reset()
-    this.registro = new RegistroPluviometria();
-
-    this.registroPluviometrias = this.cadastroPrecipitacaoStorageService.getRegistros()
-
-    this.cadastroPrecipitacaoStorageService.notifyTotalregistros()
-
-    //debugger
-    //alert(this.registro.dtHoraRegistro);
+    debugger
+    /*Armazenamento no JSON Server */
+    this.cadastroPrecipitacaoPromisesService
+      .save(this.registro)
+      .then(() => alert('Salvo no JSON Server com sucesso.'))
+      .catch(() => {
+        /*Armazenamento no LocalStorage */
+        debugger
+        if (!this.cadastroPrecipitacaoStorageService.isExist(this.registro)) {
+          this.cadastroPrecipitacaoStorageService.save(this.registro)
+        } else {
+          this.cadastroPrecipitacaoStorageService.update(this.registro)
+        }
+        this.cadastroPrecipitacaoStorageService.notifyTotalregistros()
+        alert('Json Server indisponível. Salvo em LocalStorage com sucesso.')
+      })
+      .finally(() => {
+        /*Demais controles do form*/
+        this.isSubmitted = true
+        this.isShowMessage = true
+        this.isSuccess = true
+        this.form.reset()
+        this.registro = new RegistroPluviometria()
+        this.modal.show = true
+        this.modal.title = 'Sucesso!'
+        this.modal.text = `Seu cadastro foi realizado com sucesso!`
+      })
   }
 
   onSelectChange(event: Event) {
@@ -66,10 +81,14 @@ export class CadastroPrecipitacaoComponent implements OnInit {
   }
 
   addLocal(event: Event) {
-    this.registro.locais.push((event.target as HTMLInputElement).value);
+    this.registro.locais.push((event.target as HTMLInputElement).value)
   }
 
   isLigou(event: any) {
     this.registro.isLigouIrrigacao = event.target.checked ? true : false
+  }
+
+  onCloseModal() {
+    this.modal.show = false
   }
 }

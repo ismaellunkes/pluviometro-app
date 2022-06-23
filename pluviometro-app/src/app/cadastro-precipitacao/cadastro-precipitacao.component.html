@@ -1,113 +1,119 @@
-<div class="row">
-  <form class="col s12" #form="ngForm" (submit)="onSubmit()">
-
-    <div class="row">
-      <div class="input-field col s6">
-        <input
-          id="data-hora-registro"
-          name="data-hora-registro"
-          type="datetime-local"
-          class="validate"
-          [(ngModel)]="this.registro.dtHoraRegistro"
-          #dataHoraRegistro="ngModel"
-          required
-        />
-        <label class="active" for="data-hora-registro"
-          >Data/Hora Registro</label
-        >
-        <div
-          class="red-text"
-          [hidden]="dataHoraRegistro.valid || dataHoraRegistro.untouched"
-        >
-          Por favor, informe a data do registro.
-        </div>
-      </div>
-
-      <div class="input-field col s6">
-        <input
-          id="registro-chuva"
-          name="registro-chuva"
-          type="text"
-          pattern="^\d{1,3}"
-          class="validate"
-          [(ngModel)]="this.registro.registro"
-          #registrochuva="ngModel"
-          required
-        />
-        <label class="active" for="registro">Registro em mm</label>
-        <div
-          class="red-text"
-          [hidden]="registrochuva.valid || registrochuva.untouched"
-        >
-          Por favor, informe o registro de chuva em mm.
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="input-field col s12">
-        <label class="active" for="reponsaveis">Responsável:</label>
-        <select
-          class="form-control"
-          id="reponsaveis"
-          name="reponsaveis"
-          (change)="this.onSelectChange($event)"
-        >
-          <option *ngFor="let responsavel of responsaveis" [value]="responsavel"
-            >{{ responsavel }}</option
+<app-modal [show]="modal.show" [content]="modal" (closeEvent)="onCloseModal()">
+</app-modal>
+<div>
+  <div class="row">
+    <form class="col s12" #form="ngForm" (submit)="onSubmit()">
+      <div class="row">
+        <div class="input-field col s6">
+          <input
+            id="data-hora-registro"
+            name="data-hora-registro"
+            type="datetime-local"
+            class="validate"
+            [(ngModel)]="this.registro.dtHoraRegistro"
+            #dataHoraRegistro="ngModel"
+            required
+          />
+          <label class="active" for="data-hora-registro"
+            >Data/Hora Registro</label
           >
-        </select>
-        <div
-          class="red-text"
-          [hidden]="registrochuva.valid || registrochuva.untouched"
-        >
-          Por favor, informe o reponsável pelo registro.
+          <div
+            class="red-text"
+            [hidden]="dataHoraRegistro.valid || dataHoraRegistro.untouched"
+          >
+            Por favor, informe a data do registro.
+          </div>
+        </div>
+
+        <div class="input-field col s6">
+          <input
+            id="registro-chuva"
+            name="registro-chuva"
+            type="text"
+            pattern="^\d{1,3}"
+            class="validate"
+            [(ngModel)]="this.registro.registro"
+            #registrochuva="ngModel"
+            required
+          />
+          <label class="active" for="registro">Registro em mm</label>
+          <div
+            class="red-text"
+            [hidden]="registrochuva.valid || registrochuva.untouched"
+          >
+            Por favor, informe o registro de chuva em mm.
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <label>Locais:</label>
+      <div class="row">
+        <div class="input-field col s12">
+          <label class="active" for="reponsaveis">Responsável:</label>
+          <select
+            class="form-control"
+            id="reponsaveis"
+            name="reponsaveis"
+            (change)="this.onSelectChange($event)"
+          >
+            <option
+              *ngFor="let responsavel of responsaveis"
+              [value]="responsavel"
+              >{{ responsavel }}</option
+            >
+          </select>
+          <div
+            class="red-text"
+            [hidden]="registrochuva.valid || registrochuva.untouched"
+          >
+            Por favor, informe o reponsável pelo registro.
+          </div>
+        </div>
       </div>
-    </div>
-    <div id="chk-locais" class="row" *ngFor="let local of this.locais" >
-      <label>
-        <input
-        type="checkbox"         
-        class="form-control"
-        id="local"
-        name="local"
-        class="validate"
-        [value]="local"
-        (click)="addLocal($event)" />
-        <span>{{ local }}</span>
-      </label>
-    </div>
 
-    <div class="row">
-      <div class="input-field col s12">
-        <p>
-          <label>
-            <input
-              type="checkbox"
-              id="ligou-irrigacao"
-              name="ligou-irrigacao"              
-              (click)="isLigou($event)"
-            />
-            <span>Ligou Irrigação.</span>
-          </label>
-        </p>
+      <div class="row">
+        <div class="input-field col s12">
+          <label>Locais:</label>
+        </div>
       </div>
-    </div>
+      <div id="chk-locais" class="row" *ngFor="let local of this.locais">
+        <label>
+          <input
+            type="checkbox"
+            class="form-control"
+            id="local"
+            name="local"
+            class="validate"
+            [value]="local"
+            (click)="addLocal($event)"
+          />
+          <span>{{ local }}</span>
+        </label>
+      </div>
 
-    <button
-      class="btn waves-effect waves-light darken-4"
-      type="submit"
-      [disabled]="!form.valid"
-    >
-      Salvar
-      <i class="material-icons right">send</i>
-    </button>
-  </form>
+      <div class="row">
+        <div class="input-field col s12">
+          <p>
+            <label>
+              <input
+                type="checkbox"
+                id="ligou-irrigacao"
+                name="ligou-irrigacao"
+                (click)="isLigou($event)"
+              />
+              <span>Ligou Irrigação.</span>
+            </label>
+          </p>
+        </div>
+      </div>
+
+      <button
+        class="btn waves-effect waves-light darken-4"
+        type="submit"
+        [disabled]="!form.valid"
+      >
+        Salvar
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
 </div>

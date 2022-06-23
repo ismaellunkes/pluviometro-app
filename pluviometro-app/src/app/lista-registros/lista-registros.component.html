@@ -1,28 +1,36 @@
 <table>
   <thead>
     <tr>
-        <th>Data/Hora Reg.</th>
-        <th>Registro(mm)</th>
-        <th>Item Locais</th>
-        <th>Responsável</th>
-        <th>Ligou Irrig.?</th>
+      <th>Data/Hora Reg.</th>
+      <th>Registro(mm)</th>
+      <th>Locais</th>
+      <th>Responsável</th>
+      <th>Ligou Irrig.?</th>
     </tr>
   </thead>
 
   <tbody>
     <tr *ngFor="let registro of registrosPluviometria">
-      <td>{{ registro.dtHoraRegistro | date: 'dd/MM/yyyy HH:mm:ss'  }}</td> 
-      <td>{{ registro.registro }}</td>          
-      <td>{{ registro.locais }}</td>          
-      <td>{{ registro.responsavel }}</td>          
-      <td>{{ registro.isLigouIrrigacao === true ? "Sim" : "Não" }}</td>          
-    </tr>   
+      <td>{{ registro.dtHoraRegistro | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+      <td>{{ registro.registro }}</td>
+      <td>{{ registro.locais }}</td>
+      <td>{{ registro.responsavel }}</td>
+      <td>{{ registro.isLigouIrrigacao === true ? "Sim" : "Não" }}</td>
+      <td class="right">
+        <a
+          ><i class="material-icons my-icon-size" (click)="onEdit(registro)"
+            >edit</i
+          ></a
+        >
+        <a
+          ><i class="material-icons my-icon-size" (click)="onDelete(registro)"
+            >delete</i
+          ></a
+        >
+      </td>
+    </tr>
   </tbody>
 </table>
 
-<app-total-precipitacao
-[totalPrecipitacao] = "this.totalPrecipitacao" 
->
+<app-total-precipitacao [totalPrecipitacao]="this.totalPrecipitacao">
 </app-total-precipitacao>
-
-
