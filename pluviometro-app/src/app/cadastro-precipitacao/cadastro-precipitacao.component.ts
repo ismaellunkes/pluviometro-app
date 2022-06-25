@@ -2,7 +2,14 @@ import { CadastroPrecipitacaoPromisesService } from './../services/cadastro-prec
 import { CadastroPrecipitacaoStorageService } from '../services/cadastro-precipitacao-storage.service'
 import { NgForm } from '@angular/forms'
 import { RegistroPluviometria } from './../model/registro-pluviometria'
-import { Component, Input, OnInit, Output, ViewChild } from '@angular/core'
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  OnChanges,
+} from '@angular/core'
 
 @Component({
   selector: 'app-cadastro-precipitacao',
@@ -14,6 +21,8 @@ export class CadastroPrecipitacaoComponent implements OnInit {
 
   registroPluviometrias?: RegistroPluviometria[]
   @Input() @Output() registro!: RegistroPluviometria
+
+  isLocalSelecionado!: boolean
 
   responsaveis: String[] = ['Ismael', 'Maria', 'João']
   locais: String[] = [
@@ -44,10 +53,10 @@ export class CadastroPrecipitacaoComponent implements OnInit {
     //Shared.initializeWebStorage()
     this.registro = new RegistroPluviometria()
     this.registroPluviometrias = []
+    this.isLocalSelecionado = false
   }
 
   onSubmit() {
-    debugger
     /*Armazenamento no JSON Server */
     this.cadastroPrecipitacaoPromisesService
       .save(this.registro)
@@ -81,7 +90,18 @@ export class CadastroPrecipitacaoComponent implements OnInit {
   }
 
   addLocal(event: Event) {
-    this.registro.locais.push((event.target as HTMLInputElement).value)
+
+    let checked = (event.target as HTMLInputElement).checked;
+    let itemClicado = (event.target as HTMLInputElement).value;
+
+    if (checked && !this.registro.locais.some((a) => a === itemClicado)) {
+      this.registro.locais.push(itemClicado);
+    }
+
+    if (!checked && this.registro.locais.some((a) => a === itemClicado)) {
+      this.registro.locais = this.registro.locais.filter((r) => r != itemClicado);
+    }
+
   }
 
   isLigou(event: any) {
