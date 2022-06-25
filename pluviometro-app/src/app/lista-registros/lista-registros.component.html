@@ -13,9 +13,9 @@
     <tr *ngFor="let registro of registrosPluviometria">
       <td>{{ registro.dtHoraRegistro | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
       <td>{{ registro.registro }}</td>
-      <td>{{ registro.locais }}</td>
+      <td>{{ registro.locais | locais }}</td>
       <td>{{ registro.responsavel }}</td>
-      <td>{{ registro.isLigouIrrigacao === true ? "Sim" : "Não" }}</td>
+      <td>{{ registro.isLigouIrrigacao | ligouIrrigacao }}</td>
       <td class="right">
         <a
           ><i class="material-icons my-icon-size" (click)="onEdit(registro)"

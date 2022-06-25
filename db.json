@@ -2,13 +2,37 @@
   "registros": [
     {
       "locais": [
-        "Pomar 02",
-        "Pomar 01"
+        "Pomar 01",
+        "Pomar 02"
       ],
-      "dtHoraRegistro": "2022-06-22T22:32",
+      "dtHoraRegistro": "2022-06-25T14:53",
       "registro": "12",
       "responsavel": "Maria",
+      "isLigouIrrigacao": true,
       "id": 1
+    },
+    {
+      "locais": [
+        "Pomar 03",
+        "Pomar 02"
+      ],
+      "dtHoraRegistro": "2022-06-24T14:53",
+      "registro": "8",
+      "responsavel": "João",
+      "isLigouIrrigacao": true,
+      "id": 2
+    },
+    {
+      "locais": [
+        "Pomar 02",
+        "Pomar 03",
+        "Pomar 04"
+      ],
+      "dtHoraRegistro": "2022-06-24T12:54",
+      "registro": "25",
+      "responsavel": "João",
+      "isLigouIrrigacao": true,
+      "id": 3
     }
   ]
 }

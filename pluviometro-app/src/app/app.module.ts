@@ -16,6 +16,8 @@ import { NgxMaskModule } from 'ngx-mask';
 import { TotalPrecipitacaoComponent } from './total-precipitacao/total-precipitacao.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './shared/modal/modal.component';
+import { LigouIrrigacaoPipe } from './pipes/ligou-irrigacao.pipe';
+import { LocaisPipe } from './pipes/locais.pipe';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { ModalComponent } from './shared/modal/modal.component';
     NavBarComponent,
     FooterComponent,
     TotalPrecipitacaoComponent,
-    ModalComponent
+    ModalComponent,
+    LigouIrrigacaoPipe,
+    LocaisPipe
   ],
   imports: [
     BrowserModule,
