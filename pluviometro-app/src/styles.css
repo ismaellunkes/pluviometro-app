@@ -5,7 +5,7 @@
 :root {
     --primaryColor: yellow;
   }
-  
+
   * {
     padding: 0;
     margin: 0;
@@ -13,104 +13,104 @@
     list-style: none;
     border: 0;
   }
-  
+
   body,
   html {
     background-color: #ededed !important;
   }
-  
+
   hr {
     width: 20% !important;
     border-bottom-color: var(--primaryColor);
     border-width: medium;
   }
-  
+
   .my-invalid-input {
     border-color: red !important;
     border-left-width: medium !important;
   }
-  
+
   .my-font {
     font-family: "airborne";
   }
-  
+
   .my-header {
     padding: 1em 0em;
     font-weight: 600;
   }
-  
+
   .my-content-header {
     font-weight: 600;
   }
-  
+
   .my-wrapper-select {
     margin-bottom: 2em;
   }
-  
+
   .my-year {
     text-decoration: underline;
     font-weight: bold;
     padding: 1em;
   }
-  
+
   .my-panel-content {
     text-align: justify;
   }
-  
+
   .my-center {
     display: block;
     margin: auto;
   }
-  
+
   .my-card-button {
     cursor: pointer;
   }
-  
+
   table > tbody > tr {
     cursor: pointer;
   }
-  
+
   .my-selected-table-row {
     background-color: #ffab00;
   }
-  
+
   /**
       Estilo about
   */
-  
+
   .about .col {
     margin-bottom: 24px;
   }
-  
+
   .about h5 {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 15px;
   }
-  
+
   .about h6 {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 45px;
   }
-  
+
   .about hr {
     width: 40px;
     margin-bottom: 45px;
   }
-  
+
   .about .card {
     text-align: center;
   }
-  
+
   .about .card img {
     margin-bottom: 15px;
   }
-  
+
   /**
       Estilo do index
   */
-  
+
   .cabecalho {
     text-align: center;
     padding-top: 0%;
@@ -128,12 +128,16 @@
   .footer-copyright {
     background-color: rgba(255, 35, 56, 0.75);
   }
-  
+
+  .footer-repositorio {
+    background-color: #DC3545;
+  }
+
   .cabecalho h1 {
     font-weight: 900;
     text-transform: uppercase;
   }
-  
+
   .cabecalho h5 {
     text-transform: uppercase;
     background-color: #f5f5f5;
@@ -142,50 +146,50 @@
     display: inline-block;
     font-size: 1.2rem;
   }
-  
+
   /**
       Estilo do contato
   */
-  
+
   .contact .col {
     margin-bottom: 24px;
   }
-  
+
   .contact h5 {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 15px;
   }
-  
+
   .contact h6 {
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 45px;
   }
-  
+
   .contact hr {
     width: 40px;
     margin-bottom: 45px;
   }
-  
+
   .contact .contact-holder {
     padding-left: 40px;
     text-align: left;
   }
-  
+
   .contact .contact-holder h6 {
     margin-bottom: 15px;
     text-align: left;
   }
-  
+
   .contact .contact-holder p {
     margin-bottom: 30px;
   }
-  
+
   /**
       Saldo
   */
-  
+
   .my-balance {
     padding: 20px 0px !important;
     font-size: 3em;
@@ -209,5 +213,5 @@
     width: 1442px;
     height: 597px;
     left: -2px;
-    top: -5px;    
+    top: -5px;
 }
