@@ -1,3 +1,5 @@
+import { CadastroPrecipitacaoObservableService } from './../services/cadastro-precipitacao-observable.service'
+import { ActivatedRoute, Router } from '@angular/router'
 import { CadastroPrecipitacaoPromisesService } from './../services/cadastro-precipitacao-promises.service'
 import { CadastroPrecipitacaoStorageService } from '../services/cadastro-precipitacao-storage.service'
 import { NgForm } from '@angular/forms'
@@ -10,6 +12,7 @@ import {
   ViewChild,
   OnChanges,
 } from '@angular/core'
+import { param } from 'jquery'
 
 @Component({
   selector: 'app-cadastro-precipitacao',
@@ -47,6 +50,7 @@ export class CadastroPrecipitacaoComponent implements OnInit {
   constructor(
     private cadastroPrecipitacaoStorageService: CadastroPrecipitacaoStorageService,
     private cadastroPrecipitacaoPromisesService: CadastroPrecipitacaoPromisesService,
+    private activeRoute: ActivatedRoute,
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +58,30 @@ export class CadastroPrecipitacaoComponent implements OnInit {
     this.registro = new RegistroPluviometria()
     this.registroPluviometrias = []
     this.isLocalSelecionado = false
+
+    this.activeRoute.paramMap.subscribe(
+      (params) => {
+        if (params.keys.length > 0) {
+          // @ts-ignore
+          let dtHora: Date = params?.get('datahora')
+
+          if (dtHora != null && dtHora != undefined) {
+            let r = this.cadastroPrecipitacaoStorageService.findByDataHoraRegistro(
+              dtHora,
+            )
+
+            if (r != undefined) {
+              this.registro = r
+            }
+          }
+        }
+      },
+      (e) => {
+        this.registro = new RegistroPluviometria()
+        this.registroPluviometrias = []
+        this.isLocalSelecionado = false
+      },
+    )
   }
 
   onSubmit() {
@@ -63,7 +91,6 @@ export class CadastroPrecipitacaoComponent implements OnInit {
       .then(() => alert('Salvo no JSON Server com sucesso.'))
       .catch(() => {
         /*Armazenamento no LocalStorage */
-        debugger
         if (!this.cadastroPrecipitacaoStorageService.isExist(this.registro)) {
           this.cadastroPrecipitacaoStorageService.save(this.registro)
         } else {
@@ -90,18 +117,18 @@ export class CadastroPrecipitacaoComponent implements OnInit {
   }
 
   addLocal(event: Event) {
-
-    let checked = (event.target as HTMLInputElement).checked;
-    let itemClicado = (event.target as HTMLInputElement).value;
+    let checked = (event.target as HTMLInputElement).checked
+    let itemClicado = (event.target as HTMLInputElement).value
 
     if (checked && !this.registro.locais.some((a) => a === itemClicado)) {
-      this.registro.locais.push(itemClicado);
+      this.registro.locais.push(itemClicado)
     }
 
     if (!checked && this.registro.locais.some((a) => a === itemClicado)) {
-      this.registro.locais = this.registro.locais.filter((r) => r != itemClicado);
+      this.registro.locais = this.registro.locais.filter(
+        (r) => r != itemClicado,
+      )
     }
-
   }
 
   isLigou(event: any) {

@@ -1,4 +1,3 @@
-import { ErrorUtil } from '../util/error-util'
 import { RoutesAPI } from '../util/routes-api'
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
@@ -33,7 +32,6 @@ export class CadastroPrecipitacaoObservableService {
 
     return this.httpClient
       .get<RegistroPluviometria[]>(`${this.URL}`, options)
-      .pipe(catchError(ErrorUtil.handleError));
   }
 
   save(registro: RegistroPluviometria): Observable<RegistroPluviometria> {

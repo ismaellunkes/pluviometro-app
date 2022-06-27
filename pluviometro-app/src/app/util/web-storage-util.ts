@@ -2,6 +2,7 @@ import { Shared } from './shared';
 export class WebStorageUtil {
   static get(key: string): any {
     if (localStorage.getItem(key) == null) {
+      debugger
       Shared.initializeWebStorage();
     }
     return JSON.parse(localStorage.getItem(key)!);

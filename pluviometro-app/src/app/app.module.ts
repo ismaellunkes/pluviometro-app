@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ModalComponent } from './shared/modal/modal.component';
 import { LigouIrrigacaoPipe } from './pipes/ligou-irrigacao.pipe';
 import { LocaisPipe } from './pipes/locais.pipe';
+import { AutoriaComponent } from './autoria/autoria.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { LocaisPipe } from './pipes/locais.pipe';
     TotalPrecipitacaoComponent,
     ModalComponent,
     LigouIrrigacaoPipe,
-    LocaisPipe
+    LocaisPipe,
+    AutoriaComponent
   ],
   imports: [
     BrowserModule,

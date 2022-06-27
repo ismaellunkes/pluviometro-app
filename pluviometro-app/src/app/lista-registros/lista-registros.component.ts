@@ -1,3 +1,4 @@
+import { Router } from '@angular/router'
 import { CadastroPrecipitacaoObservableService } from './../services/cadastro-precipitacao-observable.service'
 import { CadastroPrecipitacaoComponent } from './../cadastro-precipitacao/cadastro-precipitacao.component'
 import { CadastroPrecipitacaoPromisesService } from './../services/cadastro-precipitacao-promises.service'
@@ -8,7 +9,6 @@ import {
   Component,
   OnChanges,
   OnInit,
-  Output,
   SimpleChanges,
 } from '@angular/core'
 
@@ -27,6 +27,7 @@ export class ListaRegistrosComponent implements OnInit, OnChanges {
   constructor(
     private cadastroPrecipitacaoPromisesService: CadastroPrecipitacaoPromisesService,
     private cadastroPrecipitacaoObservableService: CadastroPrecipitacaoObservableService,
+    private router: Router,
   ) {
     this.isEditable = false
   }
@@ -65,10 +66,8 @@ export class ListaRegistrosComponent implements OnInit, OnChanges {
   }
 
   onEdit(registro: RegistroPluviometria) {
-    debugger
-    console.log(registro)
-    //let r =  this.cadastroPrecipitacaoService.getByDataHoraRegistro(registro.dtHoraRegistro);
-    //this.cadastroPrecipitacaoPromisesService.update(registro);
+    const url = `/edit/${registro.dtHoraRegistro}`
+    this.router.navigate([url])
   }
 
   getRegistrosPromisesServices(r: RegistroPluviometria[]) {

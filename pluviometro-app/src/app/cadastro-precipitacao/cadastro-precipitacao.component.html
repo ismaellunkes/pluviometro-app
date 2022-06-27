@@ -2,9 +2,12 @@
 </app-modal>
 <div>
   <div class="row">
-    <form class="col s12" #form="ngForm" (submit)="onSubmit()">
+    <form #form="ngForm" (submit)="onSubmit()">
       <div class="row">
-        <div class="input-field col s6">
+        <label class="active" for="data-hora-registro"
+          >Data/Hora Registro</label
+        >
+        <div class="">
           <input
             id="data-hora-registro"
             name="data-hora-registro"
@@ -14,9 +17,7 @@
             #dataHoraRegistro="ngModel"
             required
           />
-          <label class="active" for="data-hora-registro"
-            >Data/Hora Registro</label
-          >
+
           <div
             class="red-text"
             [hidden]="dataHoraRegistro.valid || dataHoraRegistro.untouched"
@@ -107,16 +108,16 @@
             </label>
           </p>
         </div>
-      </div>
 
-      <button
-        class="btn waves-effect waves-light darken-4"
-        type="submit"
-        [disabled]="!form.valid || this.registro.locais.length < 1 "
-      >
-        Salvar
-        <i class="material-icons right">send</i>
-      </button>
+        <button
+          class="btn waves-effect waves-light darken-4"
+          type="submit"
+          [disabled]="!form.valid || this.registro.locais.length < 1 "
+        >
+          Salvar
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
     </form>
   </div>
 </div>

@@ -1,4 +1,3 @@
-import { RegistroPluviometria } from './../model/registro-pluviometria';
 import { Constants } from './constants';
 
 export class Shared {

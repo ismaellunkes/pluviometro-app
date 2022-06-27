@@ -2,3 +2,10 @@ div#chk-locais{
   display: inline-block;
   padding-right: 20px;
 }
+
+form{
+  display: inline;
+  margin: 10px;
+  width: max-content;
+  display: flexbox;
+}
